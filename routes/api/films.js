@@ -1,5 +1,6 @@
 const API_PATH = "/api"
 const { postFilm, getFilms } = require ("../../db")
+app.use(cors());
 
 module.exports = (app) => {
     app.post(`${API_PATH}/film`, async (req, res)=>{
