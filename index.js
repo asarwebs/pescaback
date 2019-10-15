@@ -1,11 +1,8 @@
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-const MongoClient = require("mongodb").MongoClient;
-const ObjectId = require("mongodb").ObjectID;
 
-const CONNECTION_URL = "mongodb+srv://damon:sql1205@clusterfish-rbt35.mongodb.net/test?retryWrites=true&w=majority";
-const DATABASE_NAME = "example";
+require('dotenv').config({path: 'variables.env'});
 
 const app = express();
 const mongo = require("./db/connect");
@@ -13,7 +10,6 @@ app.use( logger("dev") );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true }) );
 
-var database, collection;
 
 require("./routes/views")(app);
 require("./routes/special")(app);
@@ -24,9 +20,12 @@ async function initMongo(){
     if(db) { initExpress(); }
 }
 
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 3000;
+
 function initExpress() {
     console.log('Iniciando Express');
-    app.listen(3000, ()=>{
+    app.listen(port, host, ()=>{
         console.log("Express ha iniciado correctamente!");
         process.on("SIGINT", closeApp);
         process.on("SIGTERM", closeApp);

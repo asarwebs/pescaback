@@ -1,6 +1,5 @@
 const MongoClient = require("mongodb").MongoClient;
 const config = require("./config");
-// const connString =`mongodb://${config.DB_HOST}:${config.DB_PORT}`;
 const CONNECTION_URL = "mongodb+srv://damon:sql1205@clusterfish-rbt35.mongodb.net/test?retryWrites=true&w=majority";
 let instance = null;
 let isDisconnecting = false;
