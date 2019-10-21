@@ -20,7 +20,7 @@ async function initMongo(){
 }
 
 const host = process.env.HOST || '0.0.0.0';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 function initExpress() {
     console.log('Iniciando Express');
